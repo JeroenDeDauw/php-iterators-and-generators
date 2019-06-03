@@ -369,8 +369,12 @@ public function nyanTextProvider(): iterable {
 					</div>
 				</section>
 
-				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="slide">
-					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim data-line-numbers="1,2">
+				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="fade">
+
+				</section>
+
+				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="fade" data-state="dimishbg">
+					<pre style="font-size: x-large"><code class="PHP" data-trim data-line-numbers="1,2">
 function doStuff(iterable $things) {
     foreach ($things as $thing) {
         /* ... */
@@ -396,7 +400,7 @@ function iterable_to_array(iterable $iterable): array {
 					</code></pre>
 				</section>
 
-				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="slide">
+				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="slide" data-state="dimishbg">
 					<p class="slide-title">iterable &#8594; Iterator</p>
 
 					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
