@@ -57,12 +57,15 @@
 							By Jeroen De Dauw
 							<br />
 							<a href="https://entropywins.wtf">
-								https://EntropyWins.wtf
+								www.EntropyWins.wtf
 							</a>
 						</p>
 
 						<br />
-						<br />
+
+						<p class="shadow" style="font-size: small">
+							Use "page down" and "page up" to navigate
+						</p>
 					</div>
 				</section>
 
@@ -177,16 +180,16 @@ findTextWithNyanCat(new ArrayIterator(['test text', '~=[,,_,,]:3']));
 				<section data-background="img/borna-bevanda-500123-unsplash.jpg" data-transition="fade">
 					<div style="margin-bottom: 200px; margin-right: 460px" class="black-text">
 						<ul style="list-style: none">
-							<li>iterable</li>
+							<li class="fragment" data-fragment-index="5">iterable</li>
 							<ul>
-								<li>array</li>
-								<li>Traversable</li>
+								<li class="fragment" data-fragment-index="4">array</li>
+								<li class="fragment" data-fragment-index="1">Traversable</li>
 								<ul>
 									<li>Iterator</li>
 									<ul>
 										<li>Generator</li>
 									</ul>
-									<li>IteratorAggregate</li>
+									<li class="fragment" data-fragment-index="2">IteratorAggregate</li>
 								</ul>
 							</ul>
 						</ul>
@@ -194,7 +197,7 @@ findTextWithNyanCat(new ArrayIterator(['test text', '~=[,,_,,]:3']));
 						<br />
 						<br />
 
-						<ul style="list-style: none" class="fragment">
+						<ul style="list-style: none" class="fragment" data-fragment-index="3">
 							<li>iterator_count(Traversable $t)</li>
 							<li>iterator_to_array(Traversable $t)</li>
 						</ul>
@@ -366,9 +369,71 @@ public function nyanTextProvider(): iterable {
 					</div>
 				</section>
 
+				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="slide">
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim data-line-numbers="1,2">
+function doStuff(iterable $things) {
+    foreach ($things as $thing) {
+        /* ... */
+    }
+}
+					</code></pre>
+
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim data-line-numbers="2">
+function doStuff(iterable $things) {
+    foreach (array_chunk($things, 2) as $twoThings) {
+        /* ... */
+    }
+}
+					</code></pre>
+
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim data-line-numbers>
+function iterable_to_array(iterable $iterable): array {
+    if (is_array($iterable)) {
+        return $iterable;
+    }
+    return iterator_to_array($iterable);
+}
+					</code></pre>
+				</section>
+
+				<section data-background="img/mikhail-vasilyev-253977-unsplash.jpg" data-transition="slide">
+					<p class="slide-title">iterable &#8594; Iterator</p>
+
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
+function iterable_to_iterator(iterable $iterable): Iterator {
+    if ($iterable instanceof Iterator) {
+        return $iterable;
+    }
+    if (is_array($iterable)) {
+        return new ArrayIterator($iterable);
+    }
+
+    // TODO: IteratorAggregate case
+}
+					</code></pre>
+
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
+    return new IteratorIterator($iterable);
+					</code></pre>
+
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
+interface IteratorAggregate extends Traversable {
+    public function getIterator();
+}
+					</code></pre>
+
+					<div class="fragment">
+						<pre style="font-size: x-large"><code class="PHP" data-trim>
+    return new \WMDE\TraversableIterator\TraversableIterator($iterable);
+						</code></pre>
+
+						<p class="black-text">github.com/wmde/iterable-functions</p>
+					</div>
+				</section>
+
 				<section data-background="img/cattribution.jpg" data-transition="fade">
 					<h3><span class="shadow"><span style="opacity: 0.75">C</span>attribution</span></h3>
-					<ul style="font-size: 26px; list-style: none">
+					<ul style="font-size: 25px; list-style: none">
 						<li class="shadow">"<a href="https://unsplash.com/photos/cWOzOnSoh6Q">First slide cat</a>" by Pacto Visual</li>
 						<li class="shadow">"<a href="https://unsplash.com/photos/IbPxGLgJiMI">Overview cat</a>" by Erik-Jan Leusink</li>
 						<li class="shadow">"<a href="https://unsplash.com/photos/y9zUTieUc-U">Iterators cat</a>" by Josh Couch</li>
@@ -382,6 +447,7 @@ public function nyanTextProvider(): iterable {
 						<li class="shadow">"<a href="https://unsplash.com/photos/TvqXq0jH3Wk">Mail templates cat</a>" by Jason Blackeye</li>
 						<li class="shadow">"<a href="https://unsplash.com/photos/vVaRqEeb_Ss">Generators also can cat</a>" by Taylor Grote</li>
 						<li class="shadow">"<a href="https://unsplash.com/photos/dQ5G0h7sLno">PHPUnit yield cat</a>" by James Sutton</li>
+						<li class="shadow">"<a href="https://unsplash.com/photos/NodtnCsLdTE">PHP is fun cat</a>" by Mikhail Vasilyev</li>
 						<li class="shadow">"Questions cat" by Linda Tanner, CC BY 2.0</li>
 						<li class="shadow">"Attribution cats" by Florencia Lewis, CC BY 2.0</li>
 						<li class="shadow">These slides by Jeroen De Dauw</li>
@@ -389,7 +455,8 @@ public function nyanTextProvider(): iterable {
 				</section>
 
 				<section data-background="img/cat-questions.jpg" data-transition="fade">
-					<p class="shadow" style="font-size: 70px">Questions?</p>
+					<p class="shadow" style="font-size: 70px; margin-bottom: 300px;">Questions?</p>
+					<p class="shadow" style="font-size: 50px; margin-bottom: 300px;">www.EntropyWins.wtf</p>
 				</section>
 			</div>
 		</div>
