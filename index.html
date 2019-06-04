@@ -54,7 +54,7 @@
 
 						<p class="shadow">
 							<br />
-							By Jeroen De Dauw
+							By @JeroenDeDauw
 							<br />
 							<a href="https://entropywins.wtf">
 								www.EntropyWins.wtf
@@ -183,13 +183,13 @@ findTextWithNyanCat(new ArrayIterator(['test text', '~=[,,_,,]:3']));
 							<li class="fragment" data-fragment-index="5">iterable</li>
 							<ul>
 								<li class="fragment" data-fragment-index="4">array</li>
-								<li class="fragment" data-fragment-index="1">Traversable</li>
+								<li class="fragment" data-fragment-index="2">Traversable</li>
 								<ul>
 									<li>Iterator</li>
 									<ul>
 										<li>Generator</li>
 									</ul>
-									<li class="fragment" data-fragment-index="2">IteratorAggregate</li>
+									<li class="fragment" data-fragment-index="1">IteratorAggregate</li>
 								</ul>
 							</ul>
 						</ul>
@@ -207,7 +207,7 @@ findTextWithNyanCat(new ArrayIterator(['test text', '~=[,,_,,]:3']));
 				<section data-background="img/lodewijk-hertog-501248-unsplash.jpg" data-state="dimbg">
 					<h3>Generators</h3>
 
-					<pre style="font-size: x-large"><code class="PHP" data-trim data-line-numbers>
+					<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim data-line-numbers>
 function newNyanGenerator(): Generator {
     yield '~=[,,_,,]:3';
     yield 'Nyan!';
@@ -228,11 +228,11 @@ foreach ($generator as $text) {
 					</ul>
 				</section>
 
-				<section data-background="img/paul-hanaoka-273394-unsplash.jpg">
+				<section data-background="img/paul-hanaoka-273394-unsplash.jpg" data-transition="fade">
 					<p class="black-text" style="margin-bottom: 200px;">IteratorAggregate + Generator = &lt;3</p>
 				</section>
 
-				<section data-background="img/ludemeula-fernandes-451948-unsplash.jpg" data-state="dimbg">
+				<section data-background="img/ludemeula-fernandes-451948-unsplash.jpg" data-state="dimbg" data-transition="fade">
 					<pre style="font-size: x-large"><code class="PHP" data-trim data-line-numbers="11-13">
 function newNyanGenerator(): Generator {
     yield '~=[,,_,,]:3';
@@ -265,12 +265,12 @@ class NyanNyan implements IteratorAggregate {
     }
 }
 
-$generator = new NyanNyan();
+$traversable = new NyanNyan();
 
-foreach ($generator as $text) {
+foreach ($traversable as $text) {
     echo $text;
 }
-foreach ($generator as $text) {
+foreach ($traversable as $text) {
     echo $text; // works fine
 }
 					</code></pre>
@@ -307,7 +307,7 @@ class MailTemplateFilenameTraversable implements \IteratorAggregate {
 
     public function getIterator() {
         foreach ($this->mailTemplatePaths as $path) {
-            foreach (glob( $path . '/Mail_*' ) as $fileName) {
+            foreach (glob( $path . '/Mail_*') as $fileName) {
                 yield basename($fileName);
             }
         }
@@ -327,13 +327,13 @@ yield "Generators" => "are awesome";
 // "Generators" => "are awesome"]
 						</code></pre>
 
-						<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
+						<pre style="font-size: larger" class="fragment"><code class="PHP" data-trim>
 yield from [1, 2, 3];
 yield from new ArrayIterator([4, 5]);
 // 1, 2, 3, 4, 5
 						</code></pre>
 
-						<pre style="font-size: x-large" class="fragment"><code class="PHP" data-trim>
+						<pre style="font-size: larger" class="fragment"><code class="PHP" data-trim>
 // Flattens iterable[] into Generator
 foreach ($collections as $collection) {
     yield from $collection;
@@ -343,7 +343,7 @@ foreach ($collections as $collection) {
 
 				<section data-background="img/james-sutton-705775-unsplash.jpg" data-transition="fade">
 					<div style="margin-bottom: 200px; margin-right: 550px">
-						<pre style="font-size: x-large"><code class="PHP" data-trim>
+						<pre style="font-size: larger"><code class="PHP" data-trim>
 class SeriousBiznessTest extends PHPUnitSomething {
     public function testContainsNyan(string $text) {
         $this->assertContains('~=[,,_,,]:3', $text);
@@ -460,7 +460,10 @@ interface IteratorAggregate extends Traversable {
 
 				<section data-background="img/cat-1647775_1920.jpg" data-transition="fade">
 					<p class="shadow" style="font-size: 70px; margin-bottom: 240px; margin-left: 700px">Questions?</p>
-					<p class="shadow" style="font-size: 50px; margin-bottom: 0; margin-left: 120px">www.EntropyWins.wtf</p>
+					<div style="font-size: 50px; margin-bottom: 0; margin-left: 120px">
+						<p class="shadow">www.EntropyWins.wtf</p>
+						<p class="shadow">@JeroenDeDauw</p>
+					</div>
 				</section>
 			</div>
 		</div>
